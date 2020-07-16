@@ -9,4 +9,4 @@ The script can be scheduled to run at a given interval and will extract any new 
 The script expects a configuration file of the format as documented in the fb.conf file.
 
 ## flashblade_audit_dashboard.xml
-Splunk dashboard to show Audit information from the FlashBlade.
+Splunk dashboard to show Audit information from one or more FlashBlades.

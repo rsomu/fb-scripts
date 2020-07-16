@@ -1,6 +1,16 @@
 <form>
   <label>FlashBlade Audit Dashboard</label>
   <fieldset submitButton="false">
+    <input type="dropdown" token="fb_name" searchWhenChanged="true">
+      <label>FB Name</label>
+      <fieldForLabel>array_name</fieldForLabel>
+      <fieldForValue>array_name</fieldForValue>
+      <search>
+        <query>index="fbaudit" sourcetype="csv"|stats last(array_version) by array_name |fields array_name</query>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
     <input type="time" token="timer1">
       <label>Time Range</label>
       <default>
@@ -14,7 +24,7 @@
       <title>Usage by Command</title>
       <chart>
         <search>
-          <query>index="fb-audit" sourcetype="csv" 
+          <query>index="fbaudit" sourcetype="csv" array_name=$fb_name$
 | stats count by command</query>
           <earliest>$timer1.earliest$</earliest>
           <latest>$timer1.latest$</latest>
@@ -58,7 +68,7 @@
       <title>Usage by Interface</title>
       <chart>
         <search>
-          <query>index="fb-audit" sourcetype="csv" 
+          <query>index="fbaudit" sourcetype="csv" array_name=$fb_name$
 | stats count by user_interface</query>
           <earliest>$timer1.earliest$</earliest>
           <latest>$timer1.latest$</latest>
@@ -102,7 +112,7 @@
       <title>Usage by Users</title>
       <chart>
         <search>
-          <query>index="fb-audit" sourcetype="csv" 
+          <query>index="fbaudit" sourcetype="csv" array_name=$fb_name$
 | stats count by user</query>
           <earliest>$timer1.earliest$</earliest>
           <latest>$timer1.latest$</latest>
@@ -146,7 +156,7 @@
       <title>1 Week usage by date</title>
       <chart>
         <search>
-          <query>index=fb-audit earliest=-7d
+          <query>index=fbaudit earliest=-7d array_name=$fb_name$
 | eval audit_date=strftime(date_time,"%y/%m/%d") 
 | timechart span=1d count as "Count" by audit_date</query>
           <earliest>0</earliest>
@@ -194,7 +204,7 @@
       <title>Audit Trail</title>
       <table>
         <search>
-          <query>index="fb-audit" sourcetype="csv" 
+          <query>index="fbaudit" sourcetype="csv" array_name = $fb_name$
 | table date_time, user, command, sub_command, arguments, location, user_interface</query>
           <earliest>$timer1.earliest$</earliest>
           <latest>$timer1.latest$</latest>
