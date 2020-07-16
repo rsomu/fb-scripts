@@ -1,5 +1,5 @@
 # fb-scripts
-Python Scripts to extract information from FlashBlade
+Python Scripts to extract audit information from FlashBlades
 
 ## getaudit.py
 Python script to extract audit trail information from FlashBlade in a csv format.
