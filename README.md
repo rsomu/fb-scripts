@@ -17,7 +17,7 @@ The script expects a configuration file of the format as documented in the fb.co
    Setting it to 0 or removing lastrun will collect the audit details again for that FlashBlade.
 4) If the logfile is not specified in the default section, messages will be logged into a file
    audit-fb.log under the current directory.
-
+```
 [default]
 fbcount = 2
 outfile = /data/splunk/audit-fb.csv
@@ -34,6 +34,7 @@ array_address = https://10.20.200.150
 api-token = T-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 outfile = /data/splunk/fb2/fb-audit2.csv
 lastrun = 170
+```
 
 ## flashblade_audit_dashboard.xml
 Splunk dashboard to show Audit information from one or more FlashBlades.
