@@ -2,11 +2,15 @@
 Python Scripts to extract audit information from FlashBlades
 
 ## getaudit.py
-Python script to extract audit trail information from FlashBlade in a csv format.
+Python script to extract audit trail information from one or more FlashBlades into a csv output file.
 This csv file can be ingested into Splunk as sourcetype CSV and can be monitored for new entries.
-The script can be scheduled to run at a given interval and will extract any new audit trail information since last run.
-
+This python script can be scheduled to run at a given interval and can extract any new audit trail information since last run.
 The script expects a configuration file of the format as documented in the fb.conf file.
+
+Usage
+```
+getaudit.py <conf file>
+```
 
 ## fb.conf
 1) If you want to configure more than one FlashBlade, specify the count against fbcount in the default section.
