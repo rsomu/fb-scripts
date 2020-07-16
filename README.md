@@ -10,10 +10,14 @@ The script expects a configuration file of the format as documented in the fb.co
 
 ## fb.conf
 1) If you want to configure more than one FlashBlade, specify the count against fbcount in the default section.
-   If the count doesn't match the FlashBlade sections suffixed with hyphen and sequence numbers, the code will report an error and stop.
+   If the count doesn't match the FlashBlade sections suffixed with hyphen and sequence number, the code will report an error and stop.
+   For example, when fbcount=2 the code expects two sections named FlashBlade-1 and FlashBlade-2.
+   If fbcount is not provided, the code expects a single section named FlashBlade-1.
 2) If you want to extract the audit details across all FlashBlades to a single file, specify outfile in the default section.
    This will ignore the individual outfile entries in each FlashBlade section.
-3) Do not update the lastrun as the code will use it for continuation after every run.
+   Alternatively, not including the outfile in default section will allow the code to extract the audit details to individual outfiles
+   specified under each section.
+3) Do not update the lastrun in any of the sections as the code will use it for continuation after every run.
    Setting it to 0 or removing lastrun will collect the audit details again for that FlashBlade.
 4) If the logfile is not specified in the default section, messages will be logged into a file
    audit-fb.log under the current directory.
@@ -38,3 +42,5 @@ lastrun = 170
 
 ## flashblade_audit_dashboard.xml
 Splunk dashboard to show Audit information from one or more FlashBlades.
+The dashboard search queries uses index=fbaudit.  If you are using any other
+index name, please edit the dashboard and update it.
